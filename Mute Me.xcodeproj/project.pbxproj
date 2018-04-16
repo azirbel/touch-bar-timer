@@ -228,7 +228,6 @@
 				TargetAttributes = {
 					11B86E4C1EDE9B4D0069D254 = {
 						CreatedOnToolsVersion = 8.3.1;
-						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.Sandbox = {
 								enabled = 0;
@@ -469,8 +468,9 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "Mute Me Now/Mute Me Now.entitlements";
 				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = WF57Z34X8U;
+				DEVELOPMENT_TEAM = EZYNX7B8E8;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SYSTEM_LIBRARY_DIR)/PrivateFrameworks",
@@ -478,7 +478,7 @@
 				INFOPLIST_FILE = "Mute Me Now/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.12;
-				PRODUCT_BUNDLE_IDENTIFIER = "pixel-point.mute-me-now";
+				PRODUCT_BUNDLE_IDENTIFIER = "azirbel.pixel-point.mute-me-now";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
@@ -491,8 +491,9 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "Mute Me Now/Mute Me Now.entitlements";
 				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = WF57Z34X8U;
+				DEVELOPMENT_TEAM = EZYNX7B8E8;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SYSTEM_LIBRARY_DIR)/PrivateFrameworks",
@@ -500,7 +501,7 @@
 				INFOPLIST_FILE = "Mute Me Now/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.12;
-				PRODUCT_BUNDLE_IDENTIFIER = "pixel-point.mute-me-now";
+				PRODUCT_BUNDLE_IDENTIFIER = "azirbel.pixel-point.mute-me-now";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
