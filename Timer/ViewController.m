@@ -111,9 +111,11 @@ static void *MASObservingContext = &MASObservingContext;
     if(state == NSOnState) {
         enableState = YES;
     }
+    /*
     if(SMLoginItemSetEnabled((__bridge CFStringRef)@"Pixel-Point.Mute-Me-Now-Launcher", enableState)) {
         [[NSUserDefaults standardUserDefaults] setBool:!enableState forKey:@"auto_login"];
     }
+     */
 }
 
 - (IBAction)showMenuBarChanged:(id)sender {
@@ -127,10 +129,6 @@ static void *MASObservingContext = &MASObservingContext;
 
     [[NSUserDefaults standardUserDefaults] setBool:enableState forKey:@"hide_status_bar"];
     [[NSUserDefaults standardUserDefaults] synchronize];
-    
-    AppDelegate *appDelegate = (AppDelegate *) [[NSApplication sharedApplication] delegate];
-    [appDelegate hideMenuBar:enableState];
-
     
     if (enableState == YES) {
     
@@ -163,10 +161,6 @@ static void *MASObservingContext = &MASObservingContext;
     
     [[NSUserDefaults standardUserDefaults] setBool:enableState forKey:@"status_bar_button_toggle"];
     [[NSUserDefaults standardUserDefaults] synchronize];
-    
-    AppDelegate *appDelegate = (AppDelegate *) [[NSApplication sharedApplication] delegate];
-    [appDelegate hideMenuBar:NO];
-    
 }
 
 - (IBAction)useAlternateStatusBarIconsChanged:(id)sender {
@@ -186,10 +180,6 @@ static void *MASObservingContext = &MASObservingContext;
     
     [[NSUserDefaults standardUserDefaults] setBool:enableState forKey:@"status_bar_alternate_icons"];
     [[NSUserDefaults standardUserDefaults] synchronize];
-    
-    AppDelegate *appDelegate = (AppDelegate *) [[NSApplication sharedApplication] delegate];
-    [appDelegate hideMenuBar:NO];
-    
 }
 
 

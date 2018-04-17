@@ -2,7 +2,7 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:Mute Me.xcodeproj">
+      location = "group:/Users/alex/projects/touch-bar-timer/touch-bar-timer.xcodeproj">
    </FileRef>
    <FileRef
       location = "group:Pods/Pods.xcodeproj">
