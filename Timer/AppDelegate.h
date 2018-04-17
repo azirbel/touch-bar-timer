@@ -13,6 +13,7 @@
 
 - (IBAction)menuMenuItemAction:(id)sender;
 
+- (void) onTick;
 - (void) shortCutKeyPressed;
 
 @end

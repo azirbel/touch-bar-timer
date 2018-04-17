@@ -17,6 +17,9 @@ static NSString *const MASCustomShortcutKey = @"customShortcut";
 
 NSButton *touchBarButton;
 bool timerActive;
+NSDate *startTime;
+NSTimer *timer;
+NSButton *nsbutton;
 
 TouchButton *button;
 
@@ -111,14 +114,68 @@ TouchButton *button;
     return timerActive ? NSColor.greenColor : NSColor.clearColor;
 }
 
+- (void) onTick {
+  NSLog(@"onTick!");
+  NSInteger duration = -(NSInteger)[startTime timeIntervalSinceNow];
+  NSLog(@"Duration: %ld", duration);
+    
+    NSInteger minutes = (duration / 60) % 60;
+    NSInteger seconds = duration % 60;
+    
+    button.title = [NSString stringWithFormat:@"%02ld:%02ld", minutes, seconds];
+  
+    /*
+  //button = [TouchButton buttonWithTitle: [NSString stringWithFormat:@"%f", duration] target:nil action:nil];
+  button = [TouchButton buttonWithTitle: @"4:44" target:nil action:nil];
+
+  [button setDelegate: self];
+  
+  NSCustomTouchBarItem *mute =
+  [[NSCustomTouchBarItem alloc] initWithIdentifier:muteIdentifier];
+  touchBarButton = button;
+  mute.view = button;
+  [NSTouchBarItem addSystemTrayItem:mute];
+  DFRElementSetControlStripPresenceForIdentifier(muteIdentifier, YES);
+     */
+}
+
+- (void) startTimer {
+  NSLog(@"Starting timer.");
+
+  startTime = [NSDate date];
+  timer = [NSTimer scheduledTimerWithTimeInterval:1.0
+                                           target:self
+                                         selector:@selector(onTick)
+                                         userInfo:nil
+                                          repeats:YES];
+  [self onTick];
+}
+
+- (void) stopTimer {
+  NSLog(@"Stopping timer.");
+  
+  if (timer) {
+    [timer invalidate];
+    timer = nil;
+  }
+  
+  [self onTick];
+}
+
 - (void)onPressed:(TouchButton*)sender
 {
-    timerActive = !timerActive;
-    
-    NSLog (@"active: %s", timerActive ? "true" : "false");
-    
-    NSButton *button = (NSButton *)sender;
-    [button setBezelColor: [self colorState: timerActive]];
+  timerActive = !timerActive;
+  
+  NSLog (@"active: %s", timerActive ? "true" : "false");
+  
+  nsbutton = (NSButton *)sender;
+  [nsbutton setBezelColor: [self colorState: timerActive]];
+  
+  if (timerActive) {
+    [self startTimer];
+  } else {
+    [self stopTimer];
+  }
 }
 
 - (void)onLongPressed:(TouchButton*)sender
