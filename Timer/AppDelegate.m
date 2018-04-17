@@ -76,23 +76,25 @@ TouchButton *button;
 }
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
-    [[[[NSApplication sharedApplication] windows] lastObject] close];
+  [[[[NSApplication sharedApplication] windows] lastObject] close];
 
-    DFRSystemModalShowsCloseBoxWhenFrontMost(YES);
+  DFRSystemModalShowsCloseBoxWhenFrontMost(YES);
 
-    NSCustomTouchBarItem *mute =
-    [[NSCustomTouchBarItem alloc] initWithIdentifier:muteIdentifier];
+  NSCustomTouchBarItem *mute =
+  [[NSCustomTouchBarItem alloc] initWithIdentifier:muteIdentifier];
 
-    button = [TouchButton buttonWithTitle: @"1:32" target:nil action:nil];
-    [button setDelegate: self];
-    mute.view = button;
+  button = [TouchButton buttonWithTitle: @"0:00" target:nil action:nil];
+  // Size, weight 0 get us the default system sizes
+  button.font = [NSFont monospacedDigitSystemFontOfSize:0 weight:0];
+  [button setDelegate: self];
+  mute.view = button;
 
-    touchBarButton = button;
+  touchBarButton = button;
 
-    [NSTouchBarItem addSystemTrayItem:mute];
-    DFRElementSetControlStripPresenceForIdentifier(muteIdentifier, YES);
+  [NSTouchBarItem addSystemTrayItem:mute];
+  DFRElementSetControlStripPresenceForIdentifier(muteIdentifier, YES);
 
-    [self enableLoginAutostart];
+  [self enableLoginAutostart];
 }
 
 -(void) enableLoginAutostart {
@@ -110,33 +112,17 @@ TouchButton *button;
 - (void)applicationWillTerminate:(NSNotification *)aNotification {
 }
 
--(NSColor *)colorState:(bool)timerActive {
-    return timerActive ? NSColor.greenColor : NSColor.clearColor;
+- (NSColor *)colorState:(bool)timerActive {
+  NSColor* greenColor = [NSColor colorWithCalibratedRed:42.0/255 green:160.0/255 blue:28.0/255 alpha:1.0f];
+  return timerActive ? greenColor : NSColor.clearColor;
 }
 
 - (void) onTick {
-  NSLog(@"onTick!");
   NSInteger duration = -(NSInteger)[startTime timeIntervalSinceNow];
-  NSLog(@"Duration: %ld", duration);
-    
-    NSInteger minutes = (duration / 60) % 60;
-    NSInteger seconds = duration % 60;
-    
-    button.title = [NSString stringWithFormat:@"%02ld:%02ld", minutes, seconds];
+  NSInteger minutes = (duration / 60) % 60;
+  NSInteger seconds = duration % 60;
   
-    /*
-  //button = [TouchButton buttonWithTitle: [NSString stringWithFormat:@"%f", duration] target:nil action:nil];
-  button = [TouchButton buttonWithTitle: @"4:44" target:nil action:nil];
-
-  [button setDelegate: self];
-  
-  NSCustomTouchBarItem *mute =
-  [[NSCustomTouchBarItem alloc] initWithIdentifier:muteIdentifier];
-  touchBarButton = button;
-  mute.view = button;
-  [NSTouchBarItem addSystemTrayItem:mute];
-  DFRElementSetControlStripPresenceForIdentifier(muteIdentifier, YES);
-     */
+  button.title = [NSString stringWithFormat:@"%ld:%02ld", minutes, seconds];
 }
 
 - (void) startTimer {
