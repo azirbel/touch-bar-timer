@@ -224,7 +224,6 @@ TouchButton *button;
 }
 
 - (IBAction) prefsMenuItemAction:(id)sender {
-
     [self onLongPressed:sender];
 }
 
