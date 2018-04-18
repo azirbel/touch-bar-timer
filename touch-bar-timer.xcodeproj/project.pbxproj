@@ -15,7 +15,8 @@
 		11B86E5D1EDE9B4D0069D254 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 11B86E5B1EDE9B4D0069D254 /* Main.storyboard */; };
 		11B86E661EDE9BD00069D254 /* DFRFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 11B86E651EDE9BD00069D254 /* DFRFoundation.framework */; };
 		11B86E981EDEC6720069D254 /* ServiceManagement.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 11B86E921EDEAD1D0069D254 /* ServiceManagement.framework */; };
-		DBCC24CD4DBB4A88C86CD871 /* libPods-Mute Me.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 30004556042F084BBC0CA872 /* libPods-Mute Me.a */; };
+		FA84D31C2087E2D40046C70A /* logo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FA84D31B2087E2D40046C70A /* logo@2x.png */; };
+		FA84D31E2087E2E10046C70A /* logo@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = FA84D31D2087E2E10046C70A /* logo@1x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -31,6 +32,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		0C9178F3A32B5C5FED30FAD5 /* Pods-touch-bar-timer.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-touch-bar-timer.release.xcconfig"; path = "Pods/Target Support Files/Pods-touch-bar-timer/Pods-touch-bar-timer.release.xcconfig"; sourceTree = "<group>"; };
 		1141FDF01EEFF6DD00CA5B30 /* TouchButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TouchButton.h; sourceTree = "<group>"; };
 		1141FDF11EEFF6DD00CA5B30 /* TouchButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TouchButton.m; sourceTree = "<group>"; };
 		1141FDF51EEFFA0000CA5B30 /* TouchDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TouchDelegate.h; sourceTree = "<group>"; };
@@ -48,9 +50,10 @@
 		11B86E8C1EDEAC980069D254 /* touch-bar-timer.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = "touch-bar-timer.xcodeproj"; sourceTree = "<group>"; };
 		11B86E921EDEAD1D0069D254 /* ServiceManagement.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ServiceManagement.framework; path = System/Library/Frameworks/ServiceManagement.framework; sourceTree = SDKROOT; };
 		11B86E9A1EDECB3F0069D254 /* Timer.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Timer.entitlements; sourceTree = "<group>"; };
-		30004556042F084BBC0CA872 /* libPods-Mute Me.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Mute Me.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		51C19D181CC260D65112962D /* Pods-Mute Me.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Mute Me.release.xcconfig"; path = "Pods/Target Support Files/Pods-Mute Me/Pods-Mute Me.release.xcconfig"; sourceTree = "<group>"; };
-		B222AB6057D3B902CBA70D34 /* Pods-Mute Me.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Mute Me.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Mute Me/Pods-Mute Me.debug.xcconfig"; sourceTree = "<group>"; };
+		243C3823F0DE2594C3A28488 /* libPods-touch-bar-timer.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-touch-bar-timer.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D8B24BAF3E304210B06EB231 /* Pods-touch-bar-timer.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-touch-bar-timer.debug.xcconfig"; path = "Pods/Target Support Files/Pods-touch-bar-timer/Pods-touch-bar-timer.debug.xcconfig"; sourceTree = "<group>"; };
+		FA84D31B2087E2D40046C70A /* logo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "logo@2x.png"; sourceTree = "<group>"; };
+		FA84D31D2087E2E10046C70A /* logo@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "logo@1x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,7 +63,6 @@
 			files = (
 				11B86E981EDEC6720069D254 /* ServiceManagement.framework in Frameworks */,
 				11B86E661EDE9BD00069D254 /* DFRFoundation.framework in Frameworks */,
-				DBCC24CD4DBB4A88C86CD871 /* libPods-Mute Me.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -74,7 +76,7 @@
 				11B86E4E1EDE9B4D0069D254 /* Products */,
 				11B86E641EDE9BD00069D254 /* Frameworks */,
 				11B86E8C1EDEAC980069D254 /* touch-bar-timer.xcodeproj */,
-				AB34A6744F649834F2A21B08 /* Pods */,
+				E635E22CBEDE6BFE1AFD16D6 /* Pods */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -95,6 +97,8 @@
 				11B86E9A1EDECB3F0069D254 /* Timer.entitlements */,
 				11B86E501EDE9B4D0069D254 /* AppDelegate.h */,
 				11B86E511EDE9B4D0069D254 /* AppDelegate.m */,
+				FA84D31D2087E2E10046C70A /* logo@1x.png */,
+				FA84D31B2087E2D40046C70A /* logo@2x.png */,
 				11B86E561EDE9B4D0069D254 /* ViewController.h */,
 				11B86E571EDE9B4D0069D254 /* ViewController.m */,
 				11B86E591EDE9B4D0069D254 /* Assets.xcassets */,
@@ -122,18 +126,25 @@
 			children = (
 				11B86E921EDEAD1D0069D254 /* ServiceManagement.framework */,
 				11B86E651EDE9BD00069D254 /* DFRFoundation.framework */,
-				30004556042F084BBC0CA872 /* libPods-Mute Me.a */,
+				243C3823F0DE2594C3A28488 /* libPods-touch-bar-timer.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		AB34A6744F649834F2A21B08 /* Pods */ = {
+		E635E22CBEDE6BFE1AFD16D6 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				B222AB6057D3B902CBA70D34 /* Pods-Mute Me.debug.xcconfig */,
-				51C19D181CC260D65112962D /* Pods-Mute Me.release.xcconfig */,
+				D8B24BAF3E304210B06EB231 /* Pods-touch-bar-timer.debug.xcconfig */,
+				0C9178F3A32B5C5FED30FAD5 /* Pods-touch-bar-timer.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		FA35582F2087F610003E1761 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -148,8 +159,6 @@
 				11B86E4A1EDE9B4D0069D254 /* Frameworks */,
 				11B86E4B1EDE9B4D0069D254 /* Resources */,
 				11B86E941EDEAD980069D254 /* CopyFiles */,
-				40C930C145A2928D7225D5F2 /* [CP] Embed Pods Frameworks */,
-				0237E5264A87F3A06915D961 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -190,6 +199,12 @@
 			mainGroup = 11B86E441EDE9B4C0069D254;
 			productRefGroup = 11B86E4E1EDE9B4D0069D254 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = FA35582F2087F610003E1761 /* Products */;
+					ProjectRef = 11B86E8C1EDEAC980069D254 /* touch-bar-timer.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				11B86E4C1EDE9B4D0069D254 /* touch-bar-timer */,
@@ -202,7 +217,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FA84D31E2087E2E10046C70A /* logo@1x.png in Resources */,
 				11B86E5A1EDE9B4D0069D254 /* Assets.xcassets in Resources */,
+				FA84D31C2087E2D40046C70A /* logo@2x.png in Resources */,
 				11B86E5D1EDE9B4D0069D254 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -210,49 +227,22 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		0237E5264A87F3A06915D961 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Mute Me/Pods-Mute Me-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		40C930C145A2928D7225D5F2 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Mute Me/Pods-Mute Me-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		E377EBCE94FE28E5EE796CBC /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-touch-bar-timer-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -374,7 +364,7 @@
 		};
 		11B86E621EDE9B4D0069D254 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B222AB6057D3B902CBA70D34 /* Pods-Mute Me.debug.xcconfig */;
+			baseConfigurationReference = D8B24BAF3E304210B06EB231 /* Pods-touch-bar-timer.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Mac Developer";
@@ -396,7 +386,7 @@
 		};
 		11B86E631EDE9B4D0069D254 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 51C19D181CC260D65112962D /* Pods-Mute Me.release.xcconfig */;
+			baseConfigurationReference = 0C9178F3A32B5C5FED30FAD5 /* Pods-touch-bar-timer.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Mac Developer";

@@ -1,4 +1,2 @@
 
-target 'Mute Me'
-
-pod 'MASShortcut'
+target 'touch-bar-timer'

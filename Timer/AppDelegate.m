@@ -4,7 +4,6 @@
 #import "TouchButton.h"
 #import "TouchDelegate.h"
 #import <Cocoa/Cocoa.h>
-#import <MASShortcut/Shortcut.h>
 
 static const NSTouchBarItemIdentifier muteIdentifier = @"azirbel.touch-bar-timer";
 static NSString *const MASCustomShortcutKey = @"customShortcut";
@@ -22,58 +21,6 @@ NSTimer *timer;
 NSButton *pressedButton;
 NSTimeInterval totalDuration;
 TouchButton *button;
-
-- (void) awakeFromNib {
-    bool hideStatusBar = false;
-    bool statusBarButtonToggle = false;
-    bool useAlternateStatusBarIcons = false;
-    
-    if ([[NSUserDefaults standardUserDefaults] objectForKey:@"hide_status_bar"] != nil) {
-        hideStatusBar = [[NSUserDefaults standardUserDefaults] boolForKey:@"hide_status_bar"];
-    }
-    
-    if ([[NSUserDefaults standardUserDefaults] objectForKey:@"status_bar_button_toggle"] != nil) {
-        statusBarButtonToggle = [[NSUserDefaults standardUserDefaults] boolForKey:@"status_bar_button_toggle"];
-    }
-    
-    if ([[NSUserDefaults standardUserDefaults] objectForKey:@"status_bar_alternate_icons"] != nil) {
-        useAlternateStatusBarIcons = [[NSUserDefaults standardUserDefaults] boolForKey:@"status_bar_alternate_icons"];
-    }
-    
-    [[NSUserDefaults standardUserDefaults] setBool:hideStatusBar forKey:@"hide_status_bar"];
-    [[NSUserDefaults standardUserDefaults] setBool:statusBarButtonToggle forKey:@"status_bar_button_toggle"];
-    [[NSUserDefaults standardUserDefaults] setBool:useAlternateStatusBarIcons forKey:@"status_bar_alternate_icons"];
-    
-    [self setShortcutKey];
-}
-
-- (void) setShortcutKey {
-    
-    // default shortcut is "Shift Command 0"
-    MASShortcut *firstLaunchShortcut = [MASShortcut shortcutWithKeyCode:kVK_ANSI_0 modifierFlags:NSEventModifierFlagCommand | NSEventModifierFlagShift];
-    NSData *firstLaunchShortcutData = [NSKeyedArchiver archivedDataWithRootObject:firstLaunchShortcut];
-    
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    [defaults registerDefaults:@{
-                                 MASCustomShortcutKey : firstLaunchShortcutData
-                                 }];
-    
-    [defaults synchronize];
-    
-    
-    [[MASShortcutMonitor sharedMonitor] registerShortcut:firstLaunchShortcut withAction:^{
-        [self shortCutKeyPressed];
-    }];
-    
-}
-
-- (void) shortCutKeyPressed {
-
-}
-
-- (void) showMenu {
-    [self.statusBar popUpStatusItemMenu:self.statusMenu];
-}
 
 - (void) applicationDidFinishLaunching:(NSNotification *)aNotification {
   [[[[NSApplication sharedApplication] windows] lastObject] close];
@@ -223,28 +170,12 @@ TouchButton *button;
   [[NSApplication sharedApplication] activateIgnoringOtherApps:true];
 }
 
-- (IBAction) prefsMenuItemAction:(id)sender {
-    [self onLongPressed:sender];
-}
-
 - (IBAction) quitMenuItemAction:(id)sender {
-    [NSApp terminate:nil];
+  [NSApp terminate:nil];
 }
 
-- (IBAction) menuMenuItemAction:(id)sender {
-
+- (IBAction) prefsMenuItemAction:(id)sender {
+    [self onHoldPressed:sender];
 }
-
-- (void) handleStatusButtonAction {
-    NSEvent *event = [[NSApplication sharedApplication] currentEvent];
-    
-    if ((event.modifierFlags & NSEventModifierFlagControl) || (event.modifierFlags & NSEventModifierFlagOption) || (event.type == NSEventTypeRightMouseUp)) {
-        
-        [self showMenu];
-        
-        return;
-    }
-}
-
 
 @end

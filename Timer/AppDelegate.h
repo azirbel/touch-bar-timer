@@ -6,15 +6,11 @@
 @property (strong, nonatomic) NSStatusItem *statusBar;
 
 - (IBAction)prefsMenuItemAction:(id)sender;
-
 - (IBAction)quitMenuItemAction:(id)sender;
 
 @property (weak) IBOutlet NSMenuItem *muteMenuItem;
 
-- (IBAction)menuMenuItemAction:(id)sender;
-
 - (void) onTick;
-- (void) shortCutKeyPressed;
 
 @end
 

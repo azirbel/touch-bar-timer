@@ -1,15 +1,14 @@
 #import <Cocoa/Cocoa.h>
 #import "TouchButton.h"
 
-static double HOLD_PRESS_TIME = 2.0;
-static double LONG_PRESS_TIME = 0.5;
+static double HOLD_PRESS_TIME = 1.0;
+static double LONG_PRESS_TIME = 0.3;
 
 @interface TouchButton ()
 
 @property double touchBeganTime;
 
 @end
-
 
 @implementation TouchButton
 
@@ -19,7 +18,7 @@ NSTimer *pressTimer;
     return YES;
 }
 
-- (void) onLongHold {
+- (void)onLongHold {
   [self.delegate onHoldPressed: self];
 }
 
