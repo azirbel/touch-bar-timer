@@ -20,6 +20,7 @@ bool timerActive;
 NSDate *startTime;
 NSTimer *timer;
 NSButton *pressedButton;
+NSTimeInterval totalDuration;
 TouchButton *button;
 
 - (void) awakeFromNib {
@@ -89,6 +90,8 @@ TouchButton *button;
   mute.view = button;
 
   touchBarButton = button;
+  
+  totalDuration = 0;
 
   [NSTouchBarItem addSystemTrayItem:mute];
   DFRElementSetControlStripPresenceForIdentifier(muteIdentifier, YES);
@@ -109,6 +112,7 @@ TouchButton *button;
 }
 
 - (void)applicationWillTerminate:(NSNotification *)aNotification {
+  [self stopTimer];
 }
 
 - (NSColor *)colorState:(bool)timerActive {
@@ -117,15 +121,17 @@ TouchButton *button;
 }
 
 - (void) onTick {
-  NSInteger duration = -(NSInteger)[startTime timeIntervalSinceNow];
-  NSInteger minutes = (duration / 60) % 60;
-  NSInteger seconds = duration % 60;
+  NSTimeInterval currentDuration = -[startTime timeIntervalSinceNow];
+  NSInteger durationInt = (NSInteger) (totalDuration + currentDuration);
+  NSInteger minutes = (durationInt / 60) % 60;
+  NSInteger seconds = durationInt % 60;
   
   button.title = [NSString stringWithFormat:@"%ld:%02ld", minutes, seconds];
 }
 
 - (void) startTimer {
   startTime = [NSDate date];
+  // TODO(azirbel): A little annoying that it doesn't tick on the original schedule. Maybe I can start/resume the timer instead of making a new one?
   timer = [NSTimer scheduledTimerWithTimeInterval:1.0
                                            target:self
                                          selector:@selector(onTick)
@@ -139,22 +145,50 @@ TouchButton *button;
     [timer invalidate];
     timer = nil;
     
-    //NSFileManager *fileManager = [NSFileManager defaultManager];
+    NSString* logFile = @"/Users/alex/Desktop/log.csv";
+    
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    if (![fileManager isWritableFileAtPath:logFile]) {
+      NSString *initialContents = [NSString stringWithFormat: @"start,end,duration,total_duration"];
+      [initialContents writeToFile:logFile
+                        atomically:true
+                          encoding:NSUTF8StringEncoding
+                            error:nil];
+    }
     
     NSError* error = nil;
-    NSString *contents = [NSString stringWithContentsOfFile:@"/Users/alex/Desktop/log.csv"
+    NSString *contents = [NSString stringWithContentsOfFile:logFile
                                                    encoding:NSUTF8StringEncoding
                                                       error:&error];
+    
+    // TODO(azirbel): Prevent writing if file doesn't start with the specified CSV headers
+    
+    NSTimeInterval duration = -[startTime timeIntervalSinceNow];
+    totalDuration += duration;
+    
+    NSLog(@"%f", totalDuration);
+    
+    NSDate* endTime = [NSDate date];
     
     if (error) {
       NSLog(@"ERROR while loading from file: %@", error);
     } else {
-      NSString *newContents = [NSString stringWithFormat: @"%@\nOK", contents];
-      [newContents writeToFile:@"/Users/alex/Desktop/log.csv"
-                 atomically:true
-                   encoding:NSUTF8StringEncoding
+      NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+      [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+      NSString *newContents = [NSString stringWithFormat: @"%@\n%@,%@,%02f,%02f",
+                               contents,
+                               [dateFormatter stringFromDate:startTime],
+                               [dateFormatter stringFromDate:endTime],
+                               duration,
+                               totalDuration
+                              ];
+      [newContents writeToFile:logFile
+                    atomically:true
+                      encoding:NSUTF8StringEncoding
                          error:nil];
     }
+    
+    startTime = nil;
   }
   
   [self onTick];
@@ -163,22 +197,6 @@ TouchButton *button;
 - (void)onPressed:(TouchButton*)sender
 {
   timerActive = !timerActive;
-  
-  NSLog (@"active: %s", timerActive ? "true" : "false");
-  
-  
-  NSFileManager *fileManager = [NSFileManager defaultManager];
-  NSData *data = [fileManager contentsAtPath:@"/Users/alex/Desktop/tmp.txt"];
-  [fileManager createFileAtPath:@"/Users/alex/Desktop/tmp2.txt" contents:data attributes:nil];
-  [data writeToFile:@"/Users/alex/Desktop/tmp3.txt" atomically:true];
-  /*
-  [[NSFileManager defaultManager] createFileAtPath:@"/Users/alex/Desktop/tmp.txt" contents:nil attributes:nil];
-  NSString *str = @"TOWRITE";
-  [str writeToFile:@"/Users/alex/Desktop/tmp.txt" atomically:YES encoding:NSUTF8StringEncoding error:nil];
-   */
-  // read
-  // NSString *contents = [NSString stringWithContentsOfFile:@"Your/Path"];
-
   
   pressedButton = (NSButton *)sender;
   [pressedButton setBezelColor: [self colorState: timerActive]];
@@ -192,8 +210,14 @@ TouchButton *button;
 
 - (void)onLongPressed:(TouchButton*)sender
 {
-    [[[[NSApplication sharedApplication] windows] lastObject] makeKeyAndOrderFront:nil];
-    [[NSApplication sharedApplication] activateIgnoringOtherApps:true];
+  timerActive = !timerActive;
+  
+  pressedButton = (NSButton *)sender;
+  [pressedButton setBezelColor: [self colorState: timerActive]];
+  
+  [self stopTimer];
+  totalDuration = 0;
+  [self onTick];
 }
 
 - (IBAction)prefsMenuItemAction:(id)sender {
