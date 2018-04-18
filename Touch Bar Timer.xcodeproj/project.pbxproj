@@ -36,7 +36,7 @@
 		1141FDF01EEFF6DD00CA5B30 /* TouchButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TouchButton.h; sourceTree = "<group>"; };
 		1141FDF11EEFF6DD00CA5B30 /* TouchButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TouchButton.m; sourceTree = "<group>"; };
 		1141FDF51EEFFA0000CA5B30 /* TouchDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TouchDelegate.h; sourceTree = "<group>"; };
-		11B86E4D1EDE9B4D0069D254 /* touch-bar-timer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "touch-bar-timer.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		11B86E4D1EDE9B4D0069D254 /* Touch Bar Timer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Touch Bar Timer.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		11B86E501EDE9B4D0069D254 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		11B86E511EDE9B4D0069D254 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		11B86E541EDE9B4D0069D254 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -86,7 +86,7 @@
 		11B86E4E1EDE9B4D0069D254 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				11B86E4D1EDE9B4D0069D254 /* touch-bar-timer.app */,
+				11B86E4D1EDE9B4D0069D254 /* Touch Bar Timer.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -150,9 +150,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		11B86E4C1EDE9B4D0069D254 /* touch-bar-timer */ = {
+		11B86E4C1EDE9B4D0069D254 /* Touch Bar Timer */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 11B86E611EDE9B4D0069D254 /* Build configuration list for PBXNativeTarget "touch-bar-timer" */;
+			buildConfigurationList = 11B86E611EDE9B4D0069D254 /* Build configuration list for PBXNativeTarget "Touch Bar Timer" */;
 			buildPhases = (
 				E377EBCE94FE28E5EE796CBC /* [CP] Check Pods Manifest.lock */,
 				11B86E491EDE9B4D0069D254 /* Sources */,
@@ -164,9 +164,9 @@
 			);
 			dependencies = (
 			);
-			name = "touch-bar-timer";
+			name = "Touch Bar Timer";
 			productName = "Mute Me Now";
-			productReference = 11B86E4D1EDE9B4D0069D254 /* touch-bar-timer.app */;
+			productReference = 11B86E4D1EDE9B4D0069D254 /* Touch Bar Timer.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -188,7 +188,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 11B86E481EDE9B4C0069D254 /* Build configuration list for PBXProject "touch-bar-timer" */;
+			buildConfigurationList = 11B86E481EDE9B4C0069D254 /* Build configuration list for PBXProject "Touch Bar Timer" */;
 			compatibilityVersion = "Xcode 3.1";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -207,7 +207,7 @@
 			);
 			projectRoot = "";
 			targets = (
-				11B86E4C1EDE9B4D0069D254 /* touch-bar-timer */,
+				11B86E4C1EDE9B4D0069D254 /* Touch Bar Timer */,
 			);
 		};
 /* End PBXProject section */
@@ -409,7 +409,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		11B86E481EDE9B4C0069D254 /* Build configuration list for PBXProject "touch-bar-timer" */ = {
+		11B86E481EDE9B4C0069D254 /* Build configuration list for PBXProject "Touch Bar Timer" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				11B86E5F1EDE9B4D0069D254 /* Debug */,
@@ -418,7 +418,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		11B86E611EDE9B4D0069D254 /* Build configuration list for PBXNativeTarget "touch-bar-timer" */ = {
+		11B86E611EDE9B4D0069D254 /* Build configuration list for PBXNativeTarget "Touch Bar Timer" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				11B86E621EDE9B4D0069D254 /* Debug */,
