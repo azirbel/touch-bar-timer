@@ -75,7 +75,7 @@ TouchButton *button;
     [self.statusBar popUpStatusItemMenu:self.statusMenu];
 }
 
-- (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
+- (void) applicationDidFinishLaunching:(NSNotification *)aNotification {
   [[[[NSApplication sharedApplication] windows] lastObject] close];
 
   DFRSystemModalShowsCloseBoxWhenFrontMost(YES);
@@ -111,11 +111,11 @@ TouchButton *button;
     }
 }
 
-- (void)applicationWillTerminate:(NSNotification *)aNotification {
+- (void) applicationWillTerminate:(NSNotification *)aNotification {
   [self stopTimer];
 }
 
-- (NSColor *)colorState:(bool)timerActive {
+- (NSColor *) colorState:(bool)timerActive {
   NSColor* greenColor = [NSColor colorWithCalibratedRed:42.0/255 green:160.0/255 blue:28.0/255 alpha:1.0f];
   return timerActive ? greenColor : NSColor.clearColor;
 }
@@ -194,8 +194,7 @@ TouchButton *button;
   [self onTick];
 }
 
-- (void)onPressed:(TouchButton*)sender
-{
+- (void) onPressed:(TouchButton*)sender {
   timerActive = !timerActive;
   
   pressedButton = (NSButton *)sender;
@@ -208,8 +207,7 @@ TouchButton *button;
   }
 }
 
-- (void)onLongPressed:(TouchButton*)sender
-{
+- (void) onLongPressed:(TouchButton*)sender {
   timerActive = !timerActive;
   
   pressedButton = (NSButton *)sender;
@@ -220,16 +218,21 @@ TouchButton *button;
   [self onTick];
 }
 
-- (IBAction)prefsMenuItemAction:(id)sender {
+- (void) onHoldPressed:(NSButton *)sender {
+  [[[[NSApplication sharedApplication] windows] lastObject] makeKeyAndOrderFront:nil];
+  [[NSApplication sharedApplication] activateIgnoringOtherApps:true];
+}
+
+- (IBAction) prefsMenuItemAction:(id)sender {
 
     [self onLongPressed:sender];
 }
 
-- (IBAction)quitMenuItemAction:(id)sender {
+- (IBAction) quitMenuItemAction:(id)sender {
     [NSApp terminate:nil];
 }
 
-- (IBAction)menuMenuItemAction:(id)sender {
+- (IBAction) menuMenuItemAction:(id)sender {
 
 }
 

@@ -1,6 +1,7 @@
 #import <Cocoa/Cocoa.h>
 #import "TouchButton.h"
 
+static double HOLD_PRESS_TIME = 2.0;
 static double LONG_PRESS_TIME = 0.5;
 
 @interface TouchButton ()
@@ -12,82 +13,82 @@ static double LONG_PRESS_TIME = 0.5;
 
 @implementation TouchButton
 
-- (BOOL)acceptsFirstResponder
-{
+NSTimer *pressTimer;
+
+- (BOOL)acceptsFirstResponder {
     return YES;
 }
 
-- (void)touchesBeganWithEvent:(NSEvent *)event
-{
-
-        NSSet<NSTouch *> *touches = [event touchesMatchingPhase:NSTouchPhaseBegan inView:self];
-        // Note: Touches may contain 0, 1 or more touches.
-        // What to do if there are more than one touch?
-        // In this example, randomly pick a touch to track and ignore the other one.
-
-        NSTouch *touch = touches.anyObject;
-        if (touch != nil)
-        {
-            if (touch.type == NSTouchTypeDirect)
-            {
-                self.touchBeganTime = [[NSDate date] timeIntervalSince1970];
-            }
-        }
-
-    [super touchesBeganWithEvent:event];
+- (void) onLongHold {
+  [self.delegate onHoldPressed: self];
 }
 
-- (void)touchesMovedWithEvent:(NSEvent *)event
-{
+- (void)touchesBeganWithEvent:(NSEvent *)event {
+  NSSet<NSTouch *> *touches = [event touchesMatchingPhase:NSTouchPhaseBegan inView:self];
+  // Note: Touches may contain 0, 1 or more touches.
+  // What to do if there are more than one touch?
+  // In this example, randomly pick a touch to track and ignore the other one.
 
-        for (NSTouch *touch in [event touchesMatchingPhase:NSTouchPhaseMoved inView:self])
-        {
-            if (touch.type == NSTouchTypeDirect)
-            {
-                break;
-            }
-        }
+  NSTouch *touch = touches.anyObject;
+  if (touch != nil) {
+    if (touch.type == NSTouchTypeDirect) {
+      self.touchBeganTime = [[NSDate date] timeIntervalSince1970];
+      
+      pressTimer = [NSTimer scheduledTimerWithTimeInterval:HOLD_PRESS_TIME
+                                               target:self
+                                             selector:@selector(onLongHold)
+                                             userInfo:nil
+                                              repeats:NO];
+    }
+  }
 
-    [super touchesMovedWithEvent:event];
+  [super touchesBeganWithEvent:event];
 }
 
-- (void)touchesEndedWithEvent:(NSEvent *)event
-{
+- (void)touchesMovedWithEvent:(NSEvent *)event {
+  for (NSTouch *touch in [event touchesMatchingPhase:NSTouchPhaseMoved inView:self]) {
+    if (touch.type == NSTouchTypeDirect) {
+      break;
+    }
+  }
 
-        for (NSTouch *touch in [event touchesMatchingPhase:NSTouchPhaseEnded inView:self])
-        {
-            if (touch.type == NSTouchTypeDirect)
-            {
-                if(self.delegate != nil)
-                {
-                    double touchTime = [[NSDate date] timeIntervalSince1970] - self.touchBeganTime;
-                    if(touchTime >= LONG_PRESS_TIME) {
-                        [self.delegate onLongPressed: self];
-                    }
-                    else
-                    {
-                        [self.delegate onPressed: self];
-                    }
-                }
-                break;
-            }
-        }
-
-    [super touchesEndedWithEvent:event];
+  [super touchesMovedWithEvent:event];
 }
 
-- (void)touchesCancelledWithEvent:(NSEvent *)event
-{
-
-        for (NSTouch *touch in [event touchesMatchingPhase:NSTouchPhaseMoved inView:self])
-        {
-            if (touch.type == NSTouchTypeDirect)
-            {
-                break;
-            }
+- (void)touchesEndedWithEvent:(NSEvent *)event {
+  for (NSTouch *touch in [event touchesMatchingPhase:NSTouchPhaseEnded inView:self]) {
+    if (touch.type == NSTouchTypeDirect) {
+      if (self.delegate != nil) {
+        double touchTime = [[NSDate date] timeIntervalSince1970] - self.touchBeganTime;
+        if (touchTime >= HOLD_PRESS_TIME) {
+          break;
+        } else if (touchTime >= LONG_PRESS_TIME) {
+          [self.delegate onLongPressed: self];
+        } else {
+          [self.delegate onPressed: self];
         }
+      }
+      break;
+    }
+  }
+  
+  [pressTimer invalidate];
+  pressTimer = nil;
+  
+  [super touchesEndedWithEvent:event];
+}
 
-    [super touchesCancelledWithEvent:event];
+- (void)touchesCancelledWithEvent:(NSEvent *)event {
+  [pressTimer invalidate];
+  pressTimer = nil;
+  
+  for (NSTouch *touch in [event touchesMatchingPhase:NSTouchPhaseMoved inView:self]) {
+    if (touch.type == NSTouchTypeDirect) {
+      break;
+    }
+  }
+
+  [super touchesCancelledWithEvent:event];
 }
 
 @end
