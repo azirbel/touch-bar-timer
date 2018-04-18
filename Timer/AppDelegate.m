@@ -19,8 +19,7 @@ NSButton *touchBarButton;
 bool timerActive;
 NSDate *startTime;
 NSTimer *timer;
-NSButton *nsbutton;
-
+NSButton *pressedButton;
 TouchButton *button;
 
 - (void) awakeFromNib {
@@ -79,7 +78,7 @@ TouchButton *button;
   [[[[NSApplication sharedApplication] windows] lastObject] close];
 
   DFRSystemModalShowsCloseBoxWhenFrontMost(YES);
-
+  
   NSCustomTouchBarItem *mute =
   [[NSCustomTouchBarItem alloc] initWithIdentifier:muteIdentifier];
 
@@ -126,8 +125,6 @@ TouchButton *button;
 }
 
 - (void) startTimer {
-  NSLog(@"Starting timer.");
-
   startTime = [NSDate date];
   timer = [NSTimer scheduledTimerWithTimeInterval:1.0
                                            target:self
@@ -138,11 +135,26 @@ TouchButton *button;
 }
 
 - (void) stopTimer {
-  NSLog(@"Stopping timer.");
-  
   if (timer) {
     [timer invalidate];
     timer = nil;
+    
+    //NSFileManager *fileManager = [NSFileManager defaultManager];
+    
+    NSError* error = nil;
+    NSString *contents = [NSString stringWithContentsOfFile:@"/Users/alex/Desktop/log.csv"
+                                                   encoding:NSUTF8StringEncoding
+                                                      error:&error];
+    
+    if (error) {
+      NSLog(@"ERROR while loading from file: %@", error);
+    } else {
+      NSString *newContents = [NSString stringWithFormat: @"%@\nOK", contents];
+      [newContents writeToFile:@"/Users/alex/Desktop/log.csv"
+                 atomically:true
+                   encoding:NSUTF8StringEncoding
+                         error:nil];
+    }
   }
   
   [self onTick];
@@ -154,8 +166,22 @@ TouchButton *button;
   
   NSLog (@"active: %s", timerActive ? "true" : "false");
   
-  nsbutton = (NSButton *)sender;
-  [nsbutton setBezelColor: [self colorState: timerActive]];
+  
+  NSFileManager *fileManager = [NSFileManager defaultManager];
+  NSData *data = [fileManager contentsAtPath:@"/Users/alex/Desktop/tmp.txt"];
+  [fileManager createFileAtPath:@"/Users/alex/Desktop/tmp2.txt" contents:data attributes:nil];
+  [data writeToFile:@"/Users/alex/Desktop/tmp3.txt" atomically:true];
+  /*
+  [[NSFileManager defaultManager] createFileAtPath:@"/Users/alex/Desktop/tmp.txt" contents:nil attributes:nil];
+  NSString *str = @"TOWRITE";
+  [str writeToFile:@"/Users/alex/Desktop/tmp.txt" atomically:YES encoding:NSUTF8StringEncoding error:nil];
+   */
+  // read
+  // NSString *contents = [NSString stringWithContentsOfFile:@"Your/Path"];
+
+  
+  pressedButton = (NSButton *)sender;
+  [pressedButton setBezelColor: [self colorState: timerActive]];
   
   if (timerActive) {
     [self startTimer];
