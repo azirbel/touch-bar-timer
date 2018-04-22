@@ -26,7 +26,12 @@ BOOL writeToLogFile;
   BOOL state = [[NSUserDefaults standardUserDefaults] boolForKey:@"auto_login"];
   [self.openAtLoginCheckbox setState: !state];
   
-  if (logFilePath != nil) {
+  if (logFilePath == nil) {
+    // TODO: This is a really ugly way to set preferences defaults
+    [[NSUserDefaults standardUserDefaults] setBool:true forKey:@"write_to_log_file"];
+    [[NSUserDefaults standardUserDefaults] setObject:@"~/Desktop/log.csv" forKey:@"log_file_path"];
+    _logFileUrlField.stringValue = @"~/Desktop/log.csv";
+  } else {
     _logFileUrlField.stringValue = [self readableFilePath:logFilePath];
   }
 
