@@ -4,9 +4,12 @@
 
 @property (weak) IBOutlet NSButton *githubButton;
 @property (weak) IBOutlet NSButton *websiteButton;
-@property (weak) IBOutlet NSButton *autoLoginState;
+@property (weak) IBOutlet NSButton *openAtLoginCheckbox;
+@property (weak) IBOutlet NSButton *writeToLogFileCheckbox;
+@property (weak) IBOutlet NSTextField *logFileUrlField;
 
-- (IBAction)onLoginStartChanged:(id)sender;
+- (IBAction)onOpenAtLoginChanged:(id)sender;
+- (IBAction)onWriteToLogFileChanged:(id)sender;
 
 @end
 

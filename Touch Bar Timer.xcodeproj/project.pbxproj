@@ -15,6 +15,7 @@
 		11B86E5D1EDE9B4D0069D254 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 11B86E5B1EDE9B4D0069D254 /* Main.storyboard */; };
 		11B86E661EDE9BD00069D254 /* DFRFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 11B86E651EDE9BD00069D254 /* DFRFoundation.framework */; };
 		11B86E981EDEC6720069D254 /* ServiceManagement.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 11B86E921EDEAD1D0069D254 /* ServiceManagement.framework */; };
+		FA725D08208BD9A800FF86AB /* Stopwatch.m in Sources */ = {isa = PBXBuildFile; fileRef = FA725D07208BD9A800FF86AB /* Stopwatch.m */; };
 		FA84D31C2087E2D40046C70A /* logo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FA84D31B2087E2D40046C70A /* logo@2x.png */; };
 		FA84D31E2087E2E10046C70A /* logo@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = FA84D31D2087E2E10046C70A /* logo@1x.png */; };
 /* End PBXBuildFile section */
@@ -52,6 +53,8 @@
 		11B86E9A1EDECB3F0069D254 /* Timer.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Timer.entitlements; sourceTree = "<group>"; };
 		243C3823F0DE2594C3A28488 /* libPods-touch-bar-timer.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-touch-bar-timer.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D8B24BAF3E304210B06EB231 /* Pods-touch-bar-timer.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-touch-bar-timer.debug.xcconfig"; path = "Pods/Target Support Files/Pods-touch-bar-timer/Pods-touch-bar-timer.debug.xcconfig"; sourceTree = "<group>"; };
+		FA725D07208BD9A800FF86AB /* Stopwatch.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Stopwatch.m; sourceTree = "<group>"; };
+		FA725D09208BDA4D00FF86AB /* Stopwatch.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Stopwatch.h; sourceTree = "<group>"; };
 		FA84D31B2087E2D40046C70A /* logo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "logo@2x.png"; sourceTree = "<group>"; };
 		FA84D31D2087E2E10046C70A /* logo@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "logo@1x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -109,6 +112,8 @@
 				1141FDF01EEFF6DD00CA5B30 /* TouchButton.h */,
 				1141FDF11EEFF6DD00CA5B30 /* TouchButton.m */,
 				1141FDF51EEFFA0000CA5B30 /* TouchDelegate.h */,
+				FA725D07208BD9A800FF86AB /* Stopwatch.m */,
+				FA725D09208BDA4D00FF86AB /* Stopwatch.h */,
 			);
 			path = Timer;
 			sourceTree = "<group>";
@@ -253,6 +258,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1141FDF21EEFF6DD00CA5B30 /* TouchButton.m in Sources */,
+				FA725D08208BD9A800FF86AB /* Stopwatch.m in Sources */,
 				11B86E581EDE9B4D0069D254 /* ViewController.m in Sources */,
 				11B86E551EDE9B4D0069D254 /* main.m in Sources */,
 				11B86E521EDE9B4D0069D254 /* AppDelegate.m in Sources */,

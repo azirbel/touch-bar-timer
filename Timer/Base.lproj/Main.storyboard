@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14105" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
     <dependencies>
+        <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14105"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
         <capability name="stacking Non-gravity area distributions on NSStackView" minToolsVersion="7.0" minSystemVersion="10.11"/>
@@ -12,10 +13,10 @@
                 <customObject id="Ady-hI-5gd" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
                 <customObject id="Voe-Tx-rLC" customClass="AppDelegate">
                     <connections>
-                        <outlet property="muteMenuItem" destination="ZAi-0g-9Kx" id="mLJ-Vb-Brq"/>
                         <outlet property="prefsMenuItemAction" destination="8zc-qp-Qgx" id="6OC-cf-ZIf"/>
                         <outlet property="quitMenuItemAction" destination="1bB-gU-CMy" id="R2d-IT-17e"/>
                         <outlet property="statusMenu" destination="oLl-V1-4Ka" id="Xvk-NQ-7lL"/>
+                        <outlet property="timerMenuItem" destination="ZAi-0g-9Kx" id="mLJ-Vb-Brq"/>
                     </connections>
                 </customObject>
                 <application id="hnw-xV-0zn" sceneMemberID="viewController">
@@ -141,10 +142,10 @@
                                 <buttonCell key="cell" type="push" title="Quit" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="fZe-Yb-1MB">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
+                                    <connections>
+                                        <action selector="quitPressed:" target="XfG-lQ-9wD" id="IvU-ij-xuk"/>
+                                    </connections>
                                 </buttonCell>
-                                <connections>
-                                    <action selector="quitPressed:" target="XfG-lQ-9wD" id="nGB-Gp-XJh"/>
-                                </connections>
                             </button>
                             <button verticalHuggingPriority="749" verticalCompressionResistancePriority="751" translatesAutoresizingMaskIntoConstraints="NO" id="KAa-G4-Uci">
                                 <rect key="frame" x="47" y="14" width="45" height="32"/>
@@ -153,7 +154,7 @@
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                                 <connections>
-                                    <action selector="onGithubPressed:" target="XfG-lQ-9wD" id="SOm-af-7F5"/>
+                                    <action selector="onGithubPressed:" target="XfG-lQ-9wD" id="OpH-Ih-jC4"/>
                                 </connections>
                             </button>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="PYQ-lw-EpL">
@@ -163,32 +164,35 @@
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                                 <connections>
-                                    <action selector="onWebsitePressed:" target="XfG-lQ-9wD" id="2fA-R3-AZg"/>
+                                    <action selector="onWebsitePressed:" target="XfG-lQ-9wD" id="lcX-7b-V8d"/>
                                 </connections>
                             </button>
                             <box verticalHuggingPriority="750" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="Dc9-Xu-cYw">
                                 <rect key="frame" x="20" y="58" width="358" height="5"/>
                             </box>
                             <box verticalHuggingPriority="750" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="QMW-t9-IPt">
-                                <rect key="frame" x="20" y="181" width="358" height="5"/>
+                                <rect key="frame" x="20" y="180" width="358" height="5"/>
                             </box>
-                            <stackView distribution="fill" orientation="horizontal" alignment="top" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ROb-JX-l7h">
-                                <rect key="frame" x="20" y="69" width="347" height="22"/>
+                            <stackView distribution="equalSpacing" orientation="horizontal" alignment="top" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ROb-JX-l7h">
+                                <rect key="frame" x="20" y="69" width="347" height="21"/>
                                 <subviews>
-                                    <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="q6o-hC-LN8">
-                                        <rect key="frame" x="0.0" y="0.0" width="264" height="22"/>
-                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="Z97-O3-622">
+                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="fRd-vC-GrD">
+                                        <rect key="frame" x="-2" y="4" width="37" height="17"/>
+                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Label" id="jzX-3A-W8b">
                                             <font key="font" metaFont="system"/>
-                                            <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                         </textFieldCell>
                                     </textField>
                                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="FoN-9C-zbe">
-                                        <rect key="frame" x="266" y="-6" width="87" height="32"/>
+                                        <rect key="frame" x="266" y="-7" width="87" height="32"/>
                                         <buttonCell key="cell" type="push" title="Change" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="JOj-8O-H6n">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="system"/>
                                         </buttonCell>
+                                        <connections>
+                                            <action selector="onChangeLogFilePressed:" target="XfG-lQ-9wD" id="KBk-9I-5KH"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <visibilityPriorities>
@@ -201,30 +205,33 @@
                                 </customSpacing>
                             </stackView>
                             <button translatesAutoresizingMaskIntoConstraints="NO" id="hvj-7s-TwY">
-                                <rect key="frame" x="18" y="145" width="103" height="18"/>
+                                <rect key="frame" x="18" y="144" width="103" height="18"/>
                                 <buttonCell key="cell" type="check" title="Open at login" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="uvS-Gd-Ucm">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                                 <connections>
-                                    <action selector="onLoginStartChanged:" target="XfG-lQ-9wD" id="57j-16-wLE"/>
+                                    <action selector="onOpenAtLoginChanged:" target="XfG-lQ-9wD" id="57j-16-wLE"/>
                                 </connections>
                             </button>
                             <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="jgV-z1-Y2K">
-                                <rect key="frame" x="261" y="268" width="111" height="111"/>
+                                <rect key="frame" x="261" y="267" width="111" height="112"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="111" id="W2g-eX-jjU"/>
                                 </constraints>
                                 <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="logo" id="2Je-uk-WdO"/>
                             </imageView>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Ytc-3L-fyG">
-                                <rect key="frame" x="18" y="107" width="112" height="18"/>
+                                <rect key="frame" x="18" y="106" width="112" height="18"/>
                                 <buttonCell key="cell" type="check" title="Save log to file" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="zr4-y5-WBv">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
+                                <connections>
+                                    <action selector="onWriteToLogFileChanged:" target="XfG-lQ-9wD" id="wmQ-xg-5Nj"/>
+                                </connections>
                             </button>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="bwT-8P-sZq">
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bwT-8P-sZq">
                                 <rect key="frame" x="22" y="325" width="19" height="17"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="by" id="wzt-f3-FML">
                                     <font key="font" metaFont="system"/>
@@ -232,7 +239,7 @@
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="pfZ-s6-6Zn">
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pfZ-s6-6Zn">
                                 <rect key="frame" x="18" y="350" width="172" height="29"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Touch Bar Timer" id="lBY-Ci-af0">
                                     <font key="font" metaFont="system" size="24"/>
@@ -240,17 +247,17 @@
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <button verticalHuggingPriority="749" verticalCompressionResistancePriority="751" translatesAutoresizingMaskIntoConstraints="NO" id="12i-hn-k5A">
+                            <button verticalHuggingPriority="749" verticalCompressionResistancePriority="751" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="12i-hn-k5A">
                                 <rect key="frame" x="40" y="318" width="69" height="32"/>
                                 <buttonCell key="cell" type="bevel" title="Alex Zirbel" bezelStyle="rounded" alignment="center" state="on" allowsMixedState="YES" inset="2" id="B6M-UI-apg">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                                 <connections>
-                                    <action selector="onBylinePressed:" target="XfG-lQ-9wD" id="zVp-aL-qG1"/>
+                                    <action selector="onWebsitePressed:" target="XfG-lQ-9wD" id="aKQ-Co-RqR"/>
                                 </connections>
                             </button>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="nBU-3l-LyO">
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nBU-3l-LyO">
                                 <rect key="frame" x="18" y="250" width="105" height="17"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Tap to start/stop" id="Idv-D6-fPG">
                                     <font key="font" metaFont="system"/>
@@ -258,7 +265,7 @@
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="8m0-TG-ucH">
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8m0-TG-ucH">
                                 <rect key="frame" x="16" y="218" width="121" height="24"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="24" id="VcW-iW-zVy"/>
@@ -269,7 +276,7 @@
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="igj-zf-fzc">
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="igj-zf-fzc">
                                 <rect key="frame" x="16" y="200" width="153" height="17"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="HOLD to open this menu" id="UsK-V7-OT7">
                                     <font key="font" metaFont="system"/>
@@ -321,9 +328,11 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="autoLoginState" destination="hvj-7s-TwY" id="adQ-vO-ZXg"/>
                         <outlet property="githubButton" destination="KAa-G4-Uci" id="HzP-kT-H5e"/>
+                        <outlet property="logFileUrlField" destination="fRd-vC-GrD" id="vWd-km-HZD"/>
+                        <outlet property="openAtLoginCheckbox" destination="hvj-7s-TwY" id="adQ-vO-ZXg"/>
                         <outlet property="websiteButton" destination="PYQ-lw-EpL" id="IdY-Vo-epQ"/>
+                        <outlet property="writeToLogFileCheckbox" destination="Ytc-3L-fyG" id="6Ud-pT-O9R"/>
                     </connections>
                 </viewController>
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>

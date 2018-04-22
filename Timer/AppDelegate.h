@@ -8,9 +8,8 @@
 - (IBAction)prefsMenuItemAction:(id)sender;
 - (IBAction)quitMenuItemAction:(id)sender;
 
-@property (weak) IBOutlet NSMenuItem *muteMenuItem;
+@property (weak) IBOutlet NSMenuItem *timerMenuItem;
 
-- (void) onTick;
+- (void) onTick:(NSTimeInterval)duration;
 
 @end
-

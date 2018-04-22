@@ -3,6 +3,7 @@
 #import <ServiceManagement/ServiceManagement.h>
 #import "TouchButton.h"
 #import "TouchDelegate.h"
+#import "Stopwatch.h"
 #import <Cocoa/Cocoa.h>
 
 static const NSTouchBarItemIdentifier muteIdentifier = @"azirbel.touch-bar-timer";
@@ -14,13 +15,11 @@ static NSString *const MASCustomShortcutKey = @"customShortcut";
 
 @implementation AppDelegate
 
-NSButton *touchBarButton;
 bool timerActive;
-NSDate *startTime;
-NSTimer *timer;
+NSButton *touchBarButton;
 NSButton *pressedButton;
-NSTimeInterval totalDuration;
 TouchButton *button;
+Stopwatch* stopwatch;
 
 - (void) applicationDidFinishLaunching:(NSNotification *)aNotification {
   [[[[NSApplication sharedApplication] windows] lastObject] close];
@@ -37,29 +36,32 @@ TouchButton *button;
   mute.view = button;
 
   touchBarButton = button;
-  
-  totalDuration = 0;
 
   [NSTouchBarItem addSystemTrayItem:mute];
   DFRElementSetControlStripPresenceForIdentifier(muteIdentifier, YES);
 
   [self enableLoginAutostart];
+  
+  [[[[NSApplication sharedApplication] windows] lastObject] makeKeyAndOrderFront:nil];
+  [[NSApplication sharedApplication] activateIgnoringOtherApps:true];
+  
+  stopwatch = [Stopwatch stopwatchWithDelegate:self];
 }
 
 -(void) enableLoginAutostart {
-    // on the first run this should be nil. So don't setup auto run
-    if ([[NSUserDefaults standardUserDefaults] objectForKey:@"auto_login"] == nil) {
-        return;
-    }
+  // on the first run this should be nil. So don't setup auto run
+  if ([[NSUserDefaults standardUserDefaults] objectForKey:@"auto_login"] == nil) {
+      return;
+  }
 
-    bool state = [[NSUserDefaults standardUserDefaults] boolForKey:@"auto_login"];
-    if(!SMLoginItemSetEnabled((__bridge CFStringRef)@"Pixel-Point.Mute-Me-Now-Launcher", !state)) {
-        NSLog(@"The login was not succesfull");
-    }
+  bool state = [[NSUserDefaults standardUserDefaults] boolForKey:@"auto_login"];
+  if(!SMLoginItemSetEnabled((__bridge CFStringRef)@"Pixel-Point.Mute-Me-Now-Launcher", !state)) {
+      NSLog(@"The login was not succesfull");
+  }
 }
 
 - (void) applicationWillTerminate:(NSNotification *)aNotification {
-  [self stopTimer];
+  [stopwatch stop];
 }
 
 - (NSColor *) colorState:(bool)timerActive {
@@ -67,78 +69,12 @@ TouchButton *button;
   return timerActive ? greenColor : NSColor.clearColor;
 }
 
-- (void) onTick {
-  NSTimeInterval currentDuration = -[startTime timeIntervalSinceNow];
-  NSInteger durationInt = (NSInteger) (totalDuration + currentDuration);
+- (void) onTick:(NSTimeInterval)duration {
+  NSInteger durationInt = (NSInteger) (duration);
   NSInteger minutes = (durationInt / 60) % 60;
   NSInteger seconds = durationInt % 60;
   
   button.title = [NSString stringWithFormat:@"%ld:%02ld", minutes, seconds];
-}
-
-- (void) startTimer {
-  startTime = [NSDate date];
-  // TODO(azirbel): A little annoying that it doesn't tick on the original schedule. Maybe I can start/resume the timer instead of making a new one?
-  timer = [NSTimer scheduledTimerWithTimeInterval:1.0
-                                           target:self
-                                         selector:@selector(onTick)
-                                         userInfo:nil
-                                          repeats:YES];
-  [self onTick];
-}
-
-- (void) stopTimer {
-  if (timer) {
-    [timer invalidate];
-    timer = nil;
-    
-    NSString* logFile = @"/Users/alex/Desktop/log.csv";
-    
-    NSFileManager *fileManager = [NSFileManager defaultManager];
-    if (![fileManager isWritableFileAtPath:logFile]) {
-      NSString *initialContents = [NSString stringWithFormat: @"start,end,duration,total_duration"];
-      [initialContents writeToFile:logFile
-                        atomically:true
-                          encoding:NSUTF8StringEncoding
-                            error:nil];
-    }
-    
-    NSError* error = nil;
-    NSString *contents = [NSString stringWithContentsOfFile:logFile
-                                                   encoding:NSUTF8StringEncoding
-                                                      error:&error];
-    
-    // TODO(azirbel): Prevent writing if file doesn't start with the specified CSV headers
-    
-    NSTimeInterval duration = -[startTime timeIntervalSinceNow];
-    totalDuration += duration;
-    
-    NSLog(@"%f", totalDuration);
-    
-    NSDate* endTime = [NSDate date];
-    
-    if (error) {
-      NSLog(@"ERROR while loading from file: %@", error);
-    } else {
-      NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-      [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
-      NSString *newContents = [NSString stringWithFormat: @"%@\n%@,%@,%02f,%02f",
-                               contents,
-                               [dateFormatter stringFromDate:startTime],
-                               [dateFormatter stringFromDate:endTime],
-                               duration,
-                               totalDuration
-                              ];
-      [newContents writeToFile:logFile
-                    atomically:true
-                      encoding:NSUTF8StringEncoding
-                         error:nil];
-    }
-    
-    startTime = nil;
-  }
-  
-  [self onTick];
 }
 
 - (void) onPressed:(TouchButton*)sender {
@@ -148,9 +84,9 @@ TouchButton *button;
   [pressedButton setBezelColor: [self colorState: timerActive]];
   
   if (timerActive) {
-    [self startTimer];
+    [stopwatch start];
   } else {
-    [self stopTimer];
+    [stopwatch stop];
   }
 }
 
@@ -160,9 +96,7 @@ TouchButton *button;
   pressedButton = (NSButton *)sender;
   [pressedButton setBezelColor: [self colorState: timerActive]];
   
-  [self stopTimer];
-  totalDuration = 0;
-  [self onTick];
+  [stopwatch reset];
 }
 
 - (void) onHoldPressed:(NSButton *)sender {
