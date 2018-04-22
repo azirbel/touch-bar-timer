@@ -67,13 +67,13 @@ BOOL writeToLogFile;
     for (NSURL *url in [panel URLs]) {
       if ([self isDirectory:url]) {
         NSArray* components = [NSArray arrayWithObjects:url.absoluteString, @"log.csv", nil];
-        logFilePath = [NSString pathWithComponents:components];
+        logFilePath = [self readableFilePath:[NSString pathWithComponents:components]];
       } else {
-        logFilePath = url.absoluteString;
+        logFilePath = [self readableFilePath:url.absoluteString];
       }
       
       [[NSUserDefaults standardUserDefaults] setObject:logFilePath forKey:@"log_file_path"];
-      _logFileUrlField.stringValue = [self readableFilePath:logFilePath];
+      _logFileUrlField.stringValue = logFilePath;
     }
   }
 }

@@ -30,15 +30,12 @@ NSTimeInterval totalDuration;
 - (void) onTick {
   NSTimeInterval currentDuration = -[startTime timeIntervalSinceNow] + totalDuration;
 
-  SEL selector = NSSelectorFromString(@"onTick");
-  if ([self.delegate respondsToSelector:selector]) {
-    [self.delegate onTick:currentDuration];
-  }
+  [self.delegate onTick:currentDuration];
 }
 
 - (void) start {
   startTime = [NSDate date];
-  // TODO(azirbel): A little annoying that it doesn't tick on the original schedule. Maybe I can start/resume the timer instead of making a new one?
+  // TODO(azirbel): A little annoying that it doesn't tick on the original schedule.
   timer = [NSTimer scheduledTimerWithTimeInterval:1.0
                                            target:self
                                          selector:@selector(onTick)
@@ -49,6 +46,8 @@ NSTimeInterval totalDuration;
 
 - (void) stop {
   if (timer) {
+    totalDuration = -[startTime timeIntervalSinceNow] + totalDuration;
+
     [timer invalidate];
     timer = nil;
     
@@ -56,13 +55,12 @@ NSTimeInterval totalDuration;
     BOOL writeToLogFile = [[NSUserDefaults standardUserDefaults] boolForKey:@"write_to_log_file"];
 
     if (writeToLogFile && logFilePath) {
+      NSLog(@"Writing to log file");
       [self logToFile:logFilePath];
     }
     
     startTime = nil;
   }
-  
-  [self onTick];
 }
 
 - (void) reset {
@@ -82,6 +80,7 @@ NSTimeInterval totalDuration;
   }
   
   NSError* error = nil;
+
   NSString *contents = [NSString stringWithContentsOfFile:filePath
                                                  encoding:NSUTF8StringEncoding
                                                     error:&error];
@@ -92,9 +91,6 @@ NSTimeInterval totalDuration;
   }
   
   NSTimeInterval duration = -[startTime timeIntervalSinceNow];
-  totalDuration += duration;
-  
-  NSLog(@"%f", totalDuration);
   
   NSDate* endTime = [NSDate date];
   

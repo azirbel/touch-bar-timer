@@ -91,7 +91,7 @@ Stopwatch* stopwatch;
 }
 
 - (void) onLongPressed:(TouchButton*)sender {
-  timerActive = !timerActive;
+  timerActive = false;
   
   pressedButton = (NSButton *)sender;
   [pressedButton setBezelColor: [self colorState: timerActive]];
