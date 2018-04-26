@@ -112,8 +112,10 @@ BOOL writeToLogFile;
   BOOL autoLogin = ([self.openAtLoginCheckbox state] == NSOnState);
   
   [[NSUserDefaults standardUserDefaults] setBool:autoLogin forKey:@"auto_login"];
-  if(!SMLoginItemSetEnabled((__bridge CFStringRef)@"Pixel-Point.Mute-Me-Now-Launcher", autoLogin)) {
-    NSLog(@"Setting 'start at login' was not successful!");
+  if (!SMLoginItemSetEnabled((__bridge CFStringRef)@"azirbel.touch-bar-timer-launcher", autoLogin)) {
+    NSLog(@"ERROR: Setting 'start at login' was not successful!");
+  } else {
+    NSLog(@"Setting 'start at login' was successful!");
   }
 }
 
