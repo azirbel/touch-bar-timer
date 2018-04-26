@@ -66,6 +66,8 @@
 		FA079C7120928703005DCD97 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FA079C7220928703005DCD97 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		FA079C7420928703005DCD97 /* touch_bar_timer_launcher.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = touch_bar_timer_launcher.entitlements; sourceTree = "<group>"; };
+		FA208FD720928D0500F60B28 /* Touch Bar Timer.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Touch Bar Timer.entitlements"; sourceTree = "<group>"; };
+		FA208FD820928D3F00F60B28 /* touch-bar-timer-launcher.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "touch-bar-timer-launcher.entitlements"; sourceTree = "<group>"; };
 		FA3355C420914CBA00372598 /* logo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "logo@2x.png"; path = "../../../Dropbox/projects/touch-bar-timer/logo@2x.png"; sourceTree = "<group>"; };
 		FA3355C520914CBA00372598 /* logo@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "logo@1x.png"; path = "../../../Dropbox/projects/touch-bar-timer/logo@1x.png"; sourceTree = "<group>"; };
 		FA725D07208BD9A800FF86AB /* Stopwatch.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Stopwatch.m; sourceTree = "<group>"; };
@@ -97,6 +99,7 @@
 		11B86E441EDE9B4C0069D254 = {
 			isa = PBXGroup;
 			children = (
+				FA208FD720928D0500F60B28 /* Touch Bar Timer.entitlements */,
 				11B86E4F1EDE9B4D0069D254 /* Timer */,
 				FA079C6520928702005DCD97 /* touch-bar-timer-launcher */,
 				11B86E4E1EDE9B4D0069D254 /* Products */,
@@ -172,6 +175,7 @@
 		FA079C6520928702005DCD97 /* touch-bar-timer-launcher */ = {
 			isa = PBXGroup;
 			children = (
+				FA208FD820928D3F00F60B28 /* touch-bar-timer-launcher.entitlements */,
 				FA079C6620928702005DCD97 /* AppDelegate.h */,
 				FA079C6720928702005DCD97 /* AppDelegate.m */,
 				FA079C6C20928703005DCD97 /* Assets.xcassets */,

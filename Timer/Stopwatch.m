@@ -20,7 +20,7 @@ NSTimeInterval totalDuration;
   self = [super init];
   
   if (self) {
-    totalDuration = 3590;
+    totalDuration = 0;
     self.delegate = delegate;
   }
   
@@ -55,7 +55,6 @@ NSTimeInterval totalDuration;
     BOOL writeToLogFile = [[NSUserDefaults standardUserDefaults] boolForKey:@"write_to_log_file"];
 
     if (writeToLogFile && logFilePath) {
-      NSLog(@"Writing to log file");
       [self logToFile:logFilePath];
     }
     
@@ -71,7 +70,7 @@ NSTimeInterval totalDuration;
 
 - (void) logToFile:(NSString*)filePath {
   NSFileManager *fileManager = [NSFileManager defaultManager];
-  if (![fileManager isWritableFileAtPath:filePath]) {
+  if (![fileManager fileExistsAtPath:filePath]) {
     NSString *initialContents = [NSString stringWithFormat: @"start,end,duration,total_duration"];
     [initialContents writeToFile:filePath
                       atomically:true

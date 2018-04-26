@@ -21,7 +21,12 @@ BOOL writeToLogFile;
   }
   
   if ([[NSUserDefaults standardUserDefaults] objectForKey:@"log_file_path"] == nil) {
-    [[NSUserDefaults standardUserDefaults] setObject:@"~/Desktop/log.csv" forKey:@"log_file_path"];
+    NSArray * paths = NSSearchPathForDirectoriesInDomains (NSDownloadsDirectory, NSUserDomainMask, YES);
+    NSString * desktopPath = [paths objectAtIndex:0];
+    NSArray* components = [NSArray arrayWithObjects:desktopPath, @"log.csv", nil];
+    NSString* defaultPath = [self readableFilePath:[NSString pathWithComponents:components]];
+    
+    [[NSUserDefaults standardUserDefaults] setObject:defaultPath forKey:@"log_file_path"];
     [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"write_to_log_file"];
   }
   
@@ -38,9 +43,13 @@ BOOL writeToLogFile;
   _writeToLogFileDescription.stringValue = [NSString stringWithFormat:@"Save log to %@", logFilePath];
 
   // enable to nil out preferences
-  [[NSUserDefaults standardUserDefaults] setObject:nil forKey:@"auto_login"];
-  [[NSUserDefaults standardUserDefaults] setObject:nil forKey:@"log_file_path"];
-  [[NSUserDefaults standardUserDefaults] setObject:nil forKey:@"write_to_log_file"];
+  /*
+   NSLog(@"WARNING: Nil out preferences");
+   [[NSUserDefaults standardUserDefaults] setObject:nil forKey:@"auto_login"];
+   [[NSUserDefaults standardUserDefaults] setObject:nil forKey:@"log_file_path"];
+   [[NSUserDefaults standardUserDefaults] setObject:nil forKey:@"write_to_log_file"];
+   [[NSUserDefaults standardUserDefaults] setObject:nil forKey:@"show_menu"];
+   */
 }
 
 -(void)viewDidAppear {
@@ -80,6 +89,7 @@ BOOL writeToLogFile;
       }
       
       [[NSUserDefaults standardUserDefaults] setObject:logFilePath forKey:@"log_file_path"];
+      [[NSUserDefaults standardUserDefaults] synchronize];
       _writeToLogFileDescription.stringValue = [NSString stringWithFormat:@"Save log to %@", logFilePath];
     }
   }

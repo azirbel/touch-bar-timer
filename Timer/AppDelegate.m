@@ -19,6 +19,7 @@ NSButton *touchBarButton;
 NSButton *pressedButton;
 TouchButton *button;
 Stopwatch* stopwatch;
+NSWindow* mainWindow;
 
 - (void) applicationDidFinishLaunching:(NSNotification *)aNotification {
   [[[[NSApplication sharedApplication] windows] lastObject] close];
@@ -39,10 +40,18 @@ Stopwatch* stopwatch;
   [NSTouchBarItem addSystemTrayItem:mute];
   DFRElementSetControlStripPresenceForIdentifier(muteIdentifier, YES);
   
-  [[[[NSApplication sharedApplication] windows] lastObject] makeKeyAndOrderFront:nil];
-  [[NSApplication sharedApplication] activateIgnoringOtherApps:true];
-  
   stopwatch = [Stopwatch stopwatchWithDelegate:self];
+  
+  mainWindow = [[[NSApplication sharedApplication] windows] lastObject];
+
+  // MAYBE AUTO LAUNCH THE PREFERENCES UI - ONLY ON VERY FIRST LAUNCH
+  if ([[NSUserDefaults standardUserDefaults] objectForKey:@"show_menu"] == nil) {
+    [mainWindow makeKeyAndOrderFront:nil];
+    [[NSApplication sharedApplication] activateIgnoringOtherApps:true];
+    
+    [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"show_menu"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+  }
 }
 
 - (void) applicationWillTerminate:(NSNotification *)aNotification {
@@ -90,7 +99,7 @@ Stopwatch* stopwatch;
 }
 
 - (void) onHoldPressed:(NSButton *)sender {
-  [[[[NSApplication sharedApplication] windows] lastObject] makeKeyAndOrderFront:nil];
+  [mainWindow makeKeyAndOrderFront:nil];
   [[NSApplication sharedApplication] activateIgnoringOtherApps:true];
 }
 
