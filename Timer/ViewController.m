@@ -1,4 +1,5 @@
 #import "ViewController.h"
+#import <ServiceManagement/ServiceManagement.h>
 #import "AppDelegate.h"
 
 static NSString *githubURL = @"https://github.com/azirbel/touch-bar-timer";
@@ -108,13 +109,12 @@ BOOL writeToLogFile;
 }
 
 - (IBAction)onOpenAtLoginChanged:(id)sender {
-  NSInteger state = [self.openAtLoginCheckbox state];
-  BOOL enableState = NO;
-  if (state == NSOnState) {
-    enableState = YES;
+  BOOL autoLogin = ([self.openAtLoginCheckbox state] == NSOnState);
+  
+  [[NSUserDefaults standardUserDefaults] setBool:autoLogin forKey:@"auto_login"];
+  if(!SMLoginItemSetEnabled((__bridge CFStringRef)@"Pixel-Point.Mute-Me-Now-Launcher", autoLogin)) {
+    NSLog(@"Setting 'start at login' was not successful!");
   }
-
-  [[NSUserDefaults standardUserDefaults] setBool:!enableState forKey:@"auto_login"];
 }
 
 - (IBAction)onWriteToLogFileChanged:(id)sender {

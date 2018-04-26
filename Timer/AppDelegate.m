@@ -1,6 +1,5 @@
 #import "AppDelegate.h"
 #import "TouchBar.h"
-#import <ServiceManagement/ServiceManagement.h>
 #import "TouchButton.h"
 #import "TouchDelegate.h"
 #import "Stopwatch.h"
@@ -39,25 +38,11 @@ Stopwatch* stopwatch;
 
   [NSTouchBarItem addSystemTrayItem:mute];
   DFRElementSetControlStripPresenceForIdentifier(muteIdentifier, YES);
-
-  [self enableLoginAutostart];
   
   [[[[NSApplication sharedApplication] windows] lastObject] makeKeyAndOrderFront:nil];
   [[NSApplication sharedApplication] activateIgnoringOtherApps:true];
   
   stopwatch = [Stopwatch stopwatchWithDelegate:self];
-}
-
--(void) enableLoginAutostart {
-  // on the first run this should be nil. So don't setup auto run
-  if ([[NSUserDefaults standardUserDefaults] objectForKey:@"auto_login"] == nil) {
-      return;
-  }
-
-  bool state = [[NSUserDefaults standardUserDefaults] boolForKey:@"auto_login"];
-  if(!SMLoginItemSetEnabled((__bridge CFStringRef)@"Pixel-Point.Mute-Me-Now-Launcher", !state)) {
-      NSLog(@"The login was not succesfull");
-  }
 }
 
 - (void) applicationWillTerminate:(NSNotification *)aNotification {
