@@ -20,7 +20,7 @@ NSTimeInterval totalDuration;
   self = [super init];
   
   if (self) {
-    totalDuration = 0;
+    totalDuration = 3590;
     self.delegate = delegate;
   }
   

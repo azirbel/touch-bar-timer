@@ -71,10 +71,15 @@ Stopwatch* stopwatch;
 
 - (void) onTick:(NSTimeInterval)duration {
   NSInteger durationInt = (NSInteger) (duration);
+  NSInteger hours = durationInt / 3600;
   NSInteger minutes = (durationInt / 60) % 60;
   NSInteger seconds = durationInt % 60;
   
-  button.title = [NSString stringWithFormat:@"%ld:%02ld", minutes, seconds];
+  if (hours) {
+    button.title = [NSString stringWithFormat:@"%ldh:%02ld", hours, minutes];
+  } else {
+    button.title = [NSString stringWithFormat:@"%ld:%02ld", minutes, seconds];
+  }
 }
 
 - (void) onPressed:(TouchButton*)sender {
