@@ -18,6 +18,7 @@
 		FA3355C620914CBA00372598 /* logo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FA3355C420914CBA00372598 /* logo@2x.png */; };
 		FA3355C720914CBA00372598 /* logo@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = FA3355C520914CBA00372598 /* logo@1x.png */; };
 		FA725D08208BD9A800FF86AB /* Stopwatch.m in Sources */ = {isa = PBXBuildFile; fileRef = FA725D07208BD9A800FF86AB /* Stopwatch.m */; };
+		FA8054A82092837200342F09 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = FA8054A72092837200342F09 /* README.md */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -48,15 +49,15 @@
 		11B86E5E1EDE9B4D0069D254 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		11B86E651EDE9BD00069D254 /* DFRFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DFRFoundation.framework; path = ../../../../../../System/Library/PrivateFrameworks/DFRFoundation.framework; sourceTree = "<group>"; };
 		11B86E671EDE9CDC0069D254 /* TouchBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TouchBar.h; sourceTree = "<group>"; };
-		11B86E8C1EDEAC980069D254 /* touch-bar-timer.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = "touch-bar-timer.xcodeproj"; sourceTree = "<group>"; };
 		11B86E921EDEAD1D0069D254 /* ServiceManagement.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ServiceManagement.framework; path = System/Library/Frameworks/ServiceManagement.framework; sourceTree = SDKROOT; };
 		11B86E9A1EDECB3F0069D254 /* Timer.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Timer.entitlements; sourceTree = "<group>"; };
-		243C3823F0DE2594C3A28488 /* libPods-touch-bar-timer.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-touch-bar-timer.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D8B24BAF3E304210B06EB231 /* Pods-touch-bar-timer.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-touch-bar-timer.debug.xcconfig"; path = "Pods/Target Support Files/Pods-touch-bar-timer/Pods-touch-bar-timer.debug.xcconfig"; sourceTree = "<group>"; };
 		FA3355C420914CBA00372598 /* logo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "logo@2x.png"; path = "../../../Dropbox/projects/touch-bar-timer/logo@2x.png"; sourceTree = "<group>"; };
 		FA3355C520914CBA00372598 /* logo@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "logo@1x.png"; path = "../../../Dropbox/projects/touch-bar-timer/logo@1x.png"; sourceTree = "<group>"; };
 		FA725D07208BD9A800FF86AB /* Stopwatch.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Stopwatch.m; sourceTree = "<group>"; };
 		FA725D09208BDA4D00FF86AB /* Stopwatch.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Stopwatch.h; sourceTree = "<group>"; };
+		FA8054A42092836100342F09 /* Touch Bar Timer.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = "Touch Bar Timer.xcodeproj"; sourceTree = "<group>"; };
+		FA8054A72092837200342F09 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,7 +79,8 @@
 				11B86E4F1EDE9B4D0069D254 /* Timer */,
 				11B86E4E1EDE9B4D0069D254 /* Products */,
 				11B86E641EDE9BD00069D254 /* Frameworks */,
-				11B86E8C1EDEAC980069D254 /* touch-bar-timer.xcodeproj */,
+				FA8054A42092836100342F09 /* Touch Bar Timer.xcodeproj */,
+				FA8054A72092837200342F09 /* README.md */,
 				E635E22CBEDE6BFE1AFD16D6 /* Pods */,
 			);
 			indentWidth = 2;
@@ -131,7 +133,6 @@
 			children = (
 				11B86E921EDEAD1D0069D254 /* ServiceManagement.framework */,
 				11B86E651EDE9BD00069D254 /* DFRFoundation.framework */,
-				243C3823F0DE2594C3A28488 /* libPods-touch-bar-timer.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -145,10 +146,8 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
-		FA35582F2087F610003E1761 /* Products */ = {
+		FA8054A52092836100342F09 /* Products */ = {
 			isa = PBXGroup;
-			children = (
-			);
 			name = Products;
 			sourceTree = "<group>";
 		};
@@ -206,8 +205,8 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = FA35582F2087F610003E1761 /* Products */;
-					ProjectRef = 11B86E8C1EDEAC980069D254 /* touch-bar-timer.xcodeproj */;
+					ProductGroup = FA8054A52092836100342F09 /* Products */;
+					ProjectRef = FA8054A42092836100342F09 /* Touch Bar Timer.xcodeproj */;
 				},
 			);
 			projectRoot = "";
@@ -224,6 +223,7 @@
 			files = (
 				FA3355C620914CBA00372598 /* logo@2x.png in Resources */,
 				11B86E5A1EDE9B4D0069D254 /* Assets.xcassets in Resources */,
+				FA8054A82092837200342F09 /* README.md in Resources */,
 				FA3355C720914CBA00372598 /* logo@1x.png in Resources */,
 				11B86E5D1EDE9B4D0069D254 /* Main.storyboard in Resources */,
 			);
