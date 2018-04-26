@@ -6,6 +6,7 @@
 @property (weak) IBOutlet NSButton *websiteButton;
 @property (weak) IBOutlet NSButton *openAtLoginCheckbox;
 @property (weak) IBOutlet NSButton *writeToLogFileCheckbox;
+@property (weak) IBOutlet NSTextField *writeToLogFileDescription;
 
 - (IBAction)onOpenAtLoginChanged:(id)sender;
 - (IBAction)onWriteToLogFileChanged:(id)sender;

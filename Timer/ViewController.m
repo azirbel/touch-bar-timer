@@ -13,32 +13,33 @@ BOOL writeToLogFile;
 - (void)viewDidLoad {
   [super viewDidLoad];
   
+  // SET UP DEFAULTS
+  
   if ([[NSUserDefaults standardUserDefaults] objectForKey:@"auto_login"] == nil) {
-    // the opposite is used later
-    [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"auto_login"];
-    [[NSUserDefaults standardUserDefaults] synchronize];
+    [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"auto_login"];
   }
+  
+  if ([[NSUserDefaults standardUserDefaults] objectForKey:@"log_file_path"] == nil) {
+    [[NSUserDefaults standardUserDefaults] setObject:@"~/Desktop/log.csv" forKey:@"log_file_path"];
+    [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"write_to_log_file"];
+  }
+  
+  [[NSUserDefaults standardUserDefaults] synchronize];
+  
+  // SET UP UI FROM DEFAULTS
 
+  BOOL autoLogin = [[NSUserDefaults standardUserDefaults] boolForKey:@"auto_login"];
   logFilePath = [[NSUserDefaults standardUserDefaults] objectForKey:@"log_file_path"];
   writeToLogFile = [[NSUserDefaults standardUserDefaults] boolForKey:@"write_to_log_file"];
-  [self.writeToLogFileCheckbox setState: writeToLogFile];
-
-  BOOL state = [[NSUserDefaults standardUserDefaults] boolForKey:@"auto_login"];
-  [self.openAtLoginCheckbox setState: !state];
   
-  if (logFilePath == nil) {
-    // TODO: This is a really ugly way to set preferences defaults
-    [[NSUserDefaults standardUserDefaults] setBool:true forKey:@"write_to_log_file"];
-    [[NSUserDefaults standardUserDefaults] setObject:@"~/Desktop/log.csv" forKey:@"log_file_path"];
-    _logFileUrlField.stringValue = @"~/Desktop/log.csv";
-  } else {
-    _logFileUrlField.stringValue = [self readableFilePath:logFilePath];
-  }
+  [self.writeToLogFileCheckbox setState: writeToLogFile];
+  [self.openAtLoginCheckbox setState: autoLogin];
+  _writeToLogFileDescription.stringValue = [NSString stringWithFormat:@"Save log to %@", logFilePath];
 
   // enable to nil out preferences
-  //[[NSUserDefaults standardUserDefaults] setObject:nil forKey:@"auto_login"];
-  //[[NSUserDefaults standardUserDefaults] setObject:nil forKey:@"log_file_path"];
-  //[[NSUserDefaults standardUserDefaults] setObject:nil forKey:@"write_to_log_file"];
+  [[NSUserDefaults standardUserDefaults] setObject:nil forKey:@"auto_login"];
+  [[NSUserDefaults standardUserDefaults] setObject:nil forKey:@"log_file_path"];
+  [[NSUserDefaults standardUserDefaults] setObject:nil forKey:@"write_to_log_file"];
 }
 
 -(void)viewDidAppear {
@@ -78,7 +79,7 @@ BOOL writeToLogFile;
       }
       
       [[NSUserDefaults standardUserDefaults] setObject:logFilePath forKey:@"log_file_path"];
-      _logFileUrlField.stringValue = logFilePath;
+      _writeToLogFileDescription.stringValue = [NSString stringWithFormat:@"Save log to %@", logFilePath];
     }
   }
 }
