@@ -28,7 +28,7 @@ Use Xcode.
 
 [touch-bar-timer-website](https://github.com/azirbel/touch-bar-timer-website)
 
-### Releasing
+## Releasing
 
 1. Xcode Product > Archive
 2. Export
