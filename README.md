@@ -1,5 +1,7 @@
 # Touch Bar Timer
 
+[touch-bar-timer.alexzirbel.com](https://touch-bar-timer.alexzirbel.com/)
+
 A little stopwatch for your Mac's touch bar.
 
 * **Tap** to start/stop.
@@ -7,8 +9,6 @@ A little stopwatch for your Mac's touch bar.
 * **Hold to open** the app preferences.
 
 ![Screenshot](top-down-active-cropped.png)
-
-[touch-bar-timer.alexzirbel.com](https://touch-bar-timer.alexzirbel.com/)
 
 ## Thanks to Pixel Point!
 
