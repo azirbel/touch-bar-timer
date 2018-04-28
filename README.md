@@ -2,9 +2,9 @@
 
 A little stopwatch for your Mac's touch bar.
 
-**Tap** to start/stop.
-**Double-tap** to reset.
-**Hold to open** the app preferences.
+* **Tap** to start/stop.
+* **Double-tap** to reset.
+* **Hold to open** the app preferences.
 
 ![Screenshot](top-down-active-cropped.png)
 
