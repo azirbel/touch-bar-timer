@@ -10,7 +10,10 @@ A little stopwatch for your Mac's touch bar.
 
 [touch-bar-timer.alexzirbel.com](https://touch-bar-timer.alexzirbel.com/)
 
-Forked from [Mute Me](https://github.com/pixel-point/mute-me) by [Pixel
+## Thanks to Pixel Point!
+
+This app was originally forked from [Mute
+Me](https://github.com/pixel-point/mute-me) by [Pixel
 Point](https://muteme.pixelpoint.io/).
 
 ## Contributing
@@ -19,10 +22,6 @@ Contributions are welcome!
 
 Please open an issue to discuss proposed changes, rather than opening a pull
 request directly.
-
-## Development
-
-Use Xcode.
 
 ## Website Repo
 
