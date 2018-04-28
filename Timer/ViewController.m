@@ -21,7 +21,7 @@ BOOL writeToLogFile;
   }
   
   if ([[NSUserDefaults standardUserDefaults] objectForKey:@"log_file_path"] == nil) {
-    NSArray * paths = NSSearchPathForDirectoriesInDomains (NSDownloadsDirectory, NSUserDomainMask, YES);
+    NSArray * paths = NSSearchPathForDirectoriesInDomains (NSDesktopDirectory, NSUserDomainMask, YES);
     NSString * desktopPath = [paths objectAtIndex:0];
     NSArray* components = [NSArray arrayWithObjects:desktopPath, @"log.csv", nil];
     NSString* defaultPath = [self readableFilePath:[NSString pathWithComponents:components]];
@@ -108,6 +108,10 @@ BOOL writeToLogFile;
 
 - (IBAction)quitPressed:(id)sender {
   [NSApp terminate:nil];
+}
+
+- (IBAction)donePressed:(id)sender {
+  [[self.view window] close];
 }
 
 - (IBAction)onGithubPressed:(id)sender {

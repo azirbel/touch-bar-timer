@@ -1,8 +1,8 @@
 #import <Cocoa/Cocoa.h>
 #import "TouchButton.h"
 
-static double HOLD_PRESS_TIME = 1.0;
-static double LONG_PRESS_TIME = 0.3;
+static double HOLD_PRESS_TIME = 0.65;
+static double DOUBLE_TAP_TIME = 0.3;
 
 @interface TouchButton ()
 
@@ -13,6 +13,7 @@ static double LONG_PRESS_TIME = 0.3;
 @implementation TouchButton
 
 NSTimer *pressTimer;
+NSDate *lastTapTime;
 
 - (BOOL)acceptsFirstResponder {
     return YES;
@@ -59,12 +60,16 @@ NSTimer *pressTimer;
     if (touch.type == NSTouchTypeDirect) {
       if (self.delegate != nil) {
         double touchTime = [[NSDate date] timeIntervalSince1970] - self.touchBeganTime;
+        NSTimeInterval timeSinceLastTap = -[lastTapTime timeIntervalSinceNow];
+        
         if (touchTime >= HOLD_PRESS_TIME) {
           break;
-        } else if (touchTime >= LONG_PRESS_TIME) {
-          [self.delegate onLongPressed: self];
+        } else if (lastTapTime && timeSinceLastTap <= DOUBLE_TAP_TIME) {
+          [self.delegate onDoubleTap: self];
+          lastTapTime = nil;
         } else {
-          [self.delegate onPressed: self];
+          [self.delegate onTap: self];
+          lastTapTime = [NSDate date];
         }
       }
       break;

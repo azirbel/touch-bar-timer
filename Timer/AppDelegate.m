@@ -76,7 +76,7 @@ NSWindow* mainWindow;
   }
 }
 
-- (void) onPressed:(TouchButton*)sender {
+- (void) onTap:(TouchButton*)sender {
   timerActive = !timerActive;
   
   pressedButton = (NSButton *)sender;
@@ -89,7 +89,7 @@ NSWindow* mainWindow;
   }
 }
 
-- (void) onLongPressed:(TouchButton*)sender {
+- (void) onDoubleTap:(TouchButton*)sender {
   timerActive = false;
   
   pressedButton = (NSButton *)sender;

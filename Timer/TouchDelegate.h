@@ -2,8 +2,8 @@
 
 @protocol TouchDelegate <NSObject>
 
-- (void)onPressed:(NSButton *)sender;
-- (void)onLongPressed:(NSButton *)sender;
+- (void)onTap:(NSButton *)sender;
+- (void)onDoubleTap:(NSButton *)sender;
 - (void)onHoldPressed:(NSButton *)sender;
 
 @end
