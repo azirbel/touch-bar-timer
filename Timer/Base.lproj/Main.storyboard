@@ -141,7 +141,7 @@
                             <button verticalHuggingPriority="749" verticalCompressionResistancePriority="751" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KAa-G4-Uci">
                                 <rect key="frame" x="47" y="12" width="45" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="bevel" title="Github" bezelStyle="rounded" alignment="center" state="on" allowsMixedState="YES" inset="2" id="fnI-lS-sU8">
+                                <buttonCell key="cell" type="bevel" title="GitHub" bezelStyle="rounded" alignment="center" state="on" allowsMixedState="YES" inset="2" id="fnI-lS-sU8">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
